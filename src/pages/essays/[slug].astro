@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const essays = await getCollection("essays");
+  return essays.map((essay) => ({
+    params: { slug: essay.id },
+    props: { essay },
+  }));
+}
+
+const { essay } = Astro.props;
+const { Content } = await render(essay);
+const iso = essay.data.pubDate.toISOString().slice(0, 10);
+---
+
+<BaseLayout title={essay.data.title} description={essay.data.description}>
+  <article class="essay-layout">
+    <div class="measure">
+      <p class="essay-kicker">
+        <time datetime={iso}>{iso}</time>
+        <span>{essay.data.minutes} 分钟阅读</span>
+      </p>
+      <h1>{essay.data.title}</h1>
+      {essay.data.subtitle && <p class="essay-subtitle">{essay.data.subtitle}</p>}
+      <div class="essay-body">
+        <Content />
+      </div>
+      <ul class="tags">
+        {essay.data.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+    </div>
+  </article>
+</BaseLayout>

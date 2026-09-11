@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE, withBase } from "../lib/site";
+---
+
+<BaseLayout
+  title="关于"
+  description="SeeAi 是一份关于人工智能历史与发展路径的个人阅读笔记站点。"
+>
+  <article class="essay-layout">
+    <div class="measure">
+      <p class="kicker">About</p>
+      <h1>这是一份个人阅读笔记</h1>
+      <div class="essay-body">
+        <p>
+          本站由 {SITE.author} 维护。{SITE.title} 不是实验室主页，也不是产品站，而是把阅读人工智能史时想反复查看的节点、论文和判断，整理成可公开访问的静态网页。
+        </p>
+        <p>
+          我更关心路径而不是热度：一个想法第一次被写下是什么时候，它为什么在某个十年看起来失败，又在何种数据、算力与评价条件里被重新启用。当代大语言模型改变了公共生活，但它们仍然站在达特茅斯会议、专家系统、反向传播与 Transformer 这条长线上。
+        </p>
+        <h2>写法上的限制</h2>
+        <p>
+          文中只使用可以公开核对的史实：会议名称、论文篇名、系统与年份。没有虚构引文，也没有编造基准分数或市场规模。若某件事仍在快速变化，我会写“出现了这类系统”，而不是假装已经有定论。
+        </p>
+        <p>
+          对齐与安全部分只作入门导读。它介绍问题从何而来、常见方法叫什么，不提供操作手册，也不把风险讨论写成科幻预告。
+        </p>
+        <h2>如何阅读</h2>
+        <p>
+          可以从<a href={withBase("/timeline/")}>年表</a>按年份扫过，也可以直接进入<a href={withBase("/essays/")}>文章</a>。页面为静态生成，适合长期保存和公开部署。若发现事实错误，应回到原始论文或机构公告核对，而不是把本站当作权威出处。
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

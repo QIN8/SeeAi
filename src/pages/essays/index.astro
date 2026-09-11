@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { withBase } from "../../lib/site";
+
+const essays = (await getCollection("essays")).sort((a, b) => a.data.order - b.data.order);
+const description = "关于神经网络、Transformer、开源生态与对齐问题的短文。";
+---
+
+<BaseLayout title="文章" description={description}>
+  <header class="page-hero">
+    <div class="measure">
+      <p class="kicker">Essays</p>
+      <h1 class="page-title">阅读笔记</h1>
+      <p>这些短文用来串起年表里的转折，而不是宣布某个时代已经结束。可以按任意顺序读。</p>
+    </div>
+  </header>
+  <section class="section" style="padding-top: 0;">
+    <div class="measure">
+      <div class="essay-list">
+        {
+          essays.map((essay, i) => (
+            <a class="essay-item" href={withBase(`/essays/${essay.id}/`)}>
+              <span class="essay-index">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h2 class="essay-title">{essay.data.title}</h2>
+                <p class="essay-dek">{essay.data.description}</p>
+                <p class="essay-meta">{essay.data.minutes} 分钟阅读</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
