@@ -1,0 +1,100 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { SITE, withBase } from "../lib/site";
+import { timeline } from "../data/timeline";
+
+const essays = (await getCollection("essays")).sort((a, b) => a.data.order - b.data.order);
+const featured = essays.filter((essay) => essay.data.featured);
+const recentMilestones = timeline.slice(-4);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-watermark" aria-hidden="true">见</p>
+      <p class="kicker">Reading notes on AI history</p>
+      <h1>看见人工智能走过的路，而不是下一句口号。</h1>
+      <p class="hero-lead">
+        {SITE.title} 是一份个人阅读笔记。它把达特茅斯会议、专家系统、深度学习、Transformer
+        与当代大语言模型放回同一条时间线上，用来记住：今天的系统来自很长的试错，而不是突然降临的奇迹。
+      </p>
+      <div class="hero-meta">
+        <span>中文为主 · 公开静态站点</span>
+        <span>无后端 · 无登录 · 可部署到 GitHub Pages / Vercel</span>
+      </div>
+    </div>
+  </section>
+  <hr class="rule" />
+  <section class="section">
+    <div class="wrap intro-grid">
+      <div class="prose">
+        <h2>这是一份怎样的笔记</h2>
+        <p>
+          人工智能的公共讨论很容易被产品发布带着跑。本站刻意放慢速度：先看问题是怎么被提出的，方法为什么在某个十年失效，又在哪个条件下被重新拾起。
+        </p>
+        <p>
+          文章不提供投资建议，也不假装完整学术综述。年份、会议与论文篇名均来自可核对的公开文献；没有编造的引用、访问量或能力百分比。
+        </p>
+      </div>
+      <ul class="seal-list">
+        <li>
+          <strong>路径</strong>
+          <span>从符号、规则到表示学习，方法更替往往伴随算力、数据与评价方式的变化。</span>
+        </li>
+        <li>
+          <strong>限度</strong>
+          <span>流畅的输出不等于理解；工业可用也不等于已经解决智能本身。</span>
+        </li>
+        <li>
+          <strong>公开</strong>
+          <span>开源工具与开源权重改变了谁能复现实验，但不自动回答安全与治理问题。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>精选文章</h2>
+        <a class="section-link" href={withBase("/essays/")}>全部文章</a>
+      </div>
+      <div class="essay-list">
+        {
+          featured.map((essay, i) => (
+            <a class="essay-item" href={withBase(`/essays/${essay.id}/`)}>
+              <span class="essay-index">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 class="essay-title">{essay.data.title}</h3>
+                <p class="essay-dek">{essay.data.description}</p>
+              </div>
+              <span class="essay-meta">{essay.data.minutes} 分钟</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>时间线上的近处</h2>
+        <a class="section-link" href={withBase("/timeline/")}>完整年表</a>
+      </div>
+      <ol class="timeline">
+        {
+          recentMilestones.map((item) => (
+            <li>
+              <span class="t-year">{item.year}</span>
+              <span class="t-dot" aria-hidden="true" />
+              <div>
+                <h3 class="t-title">{item.title}</h3>
+                <p class="t-note">{item.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</BaseLayout>

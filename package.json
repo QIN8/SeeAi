@@ -1,0 +1,21 @@
+{
+  "name": "seeai",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SeeAi — 一份关于人工智能历史与路径的个人阅读笔记。",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.13.8"
+  }
+}

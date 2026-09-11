@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { eras, timeline } from "../data/timeline";
+
+const description = "从达特茅斯会议、专家系统、深度学习到 Transformer 与当代大语言模型的关键节点。";
+---
+
+<BaseLayout title="AI 年表" description={description}>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="kicker">Timeline</p>
+      <h1 class="page-title">人工智能简明年表</h1>
+      <p>
+        下面不是一份完备编年史，而是帮助阅读的路标。每个条目只记录可公开核对的事件：会议、论文、系统或评估报告。更细的讨论见文章栏。
+      </p>
+    </div>
+  </header>
+  <section class="section" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="era-row">
+        {
+          eras.map((era) => (
+            <article class="era-card">
+              <div class="years">{era.years}</div>
+              <h3>{era.label}</h3>
+              <p>{era.summary}</p>
+            </article>
+          ))
+        }
+      </div>
+      <ol class="timeline">
+        {
+          timeline.map((item) => (
+            <li>
+              <span class="t-year">{item.year}</span>
+              <span class="t-dot" aria-hidden="true" />
+              <div>
+                <h3 class="t-title">{item.title}</h3>
+                <p class="t-note">{item.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
