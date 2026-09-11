@@ -194,9 +194,9 @@ a:hover {
 
 .hero h1 {
   margin: 0;
-  max-width: 14em;
+  max-width: 16em;
   font-size: clamp(2.1rem, 5vw, 3.4rem);
-  line-height: 1.25;
+  line-height: 1.28;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -299,8 +299,8 @@ a:hover {
 
 .essay-item {
   display: grid;
-  grid-template-columns: 4.5rem 1fr auto;
-  gap: 1.25rem;
+  grid-template-columns: 3.4rem 1fr;
+  gap: 0.6rem 1.1rem;
   align-items: baseline;
   padding: 1.35rem 0;
   border-bottom: 1px solid var(--line);
@@ -464,15 +464,6 @@ a:hover {
   padding-top: 0.5rem;
 }
 
-.essay-body > p:first-of-type::first-letter {
-  float: left;
-  font-size: 3.1rem;
-  line-height: 0.85;
-  padding: 0.18em 0.12em 0 0;
-  color: var(--cinnabar);
-  font-weight: 700;
-}
-
 .essay-body h2 {
   margin: 2.2rem 0 0.8rem;
   font-size: 1.28rem;
@@ -554,10 +545,13 @@ a:hover {
   margin: 0;
 }
 
+.essay-item .essay-meta {
+  margin-top: 0.35rem;
+}
+
 @media (max-width: 860px) {
   .intro-grid,
-  .era-row,
-  .essay-item {
+  .era-row {
     grid-template-columns: 1fr;
   }
 

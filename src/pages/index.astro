@@ -14,7 +14,7 @@ const recentMilestones = timeline.slice(-4);
     <div class="wrap">
       <p class="hero-watermark" aria-hidden="true">见</p>
       <p class="kicker">Reading notes on AI history</p>
-      <h1>看见人工智能走过的路，而不是下一句口号。</h1>
+      <h1>看见人工智能走过的路，<br />而不是下一句口号。</h1>
       <p class="hero-lead">
         {SITE.title} 是一份个人阅读笔记。它把达特茅斯会议、专家系统、深度学习、Transformer
         与当代大语言模型放回同一条时间线上，用来记住：今天的系统来自很长的试错，而不是突然降临的奇迹。
@@ -67,8 +67,8 @@ const recentMilestones = timeline.slice(-4);
               <div>
                 <h3 class="essay-title">{essay.data.title}</h3>
                 <p class="essay-dek">{essay.data.description}</p>
+                <p class="essay-meta">{essay.data.minutes} 分钟阅读</p>
               </div>
-              <span class="essay-meta">{essay.data.minutes} 分钟</span>
             </a>
           ))
         }
